@@ -1,0 +1,10 @@
+body {
+  font-family: sans-serif;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+label {
+  display: block;
+  padding: 0.2em 0 2em 0;
+}

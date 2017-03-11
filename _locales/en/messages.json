@@ -1,0 +1,41 @@
+{
+  "extensionName": {
+    "message": "Send to newsic (alpha test)",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Sends YouTube playlists and Vimeo albums & channels to newsic.",
+    "description": "Description of the extension."
+  },
+
+  "YTPlaylistButton": {
+  	"message": "Send to newsic",
+  	"description": "Text for button in playlist pages (YouTube)."
+  },
+
+  "YTPlaylistButtonTooltip": {
+  	"message": "Open this playlist in newsic",
+  	"description": "Tooltip for button in playlist view (YouTube)."
+  },
+
+  "YTPlaylistButton2Tooltip": {
+  	"message": "Continue this playlist in newsic",
+  	"description": "Tooltip for continue button in playlist view (YouTube)."
+  },
+
+  "settingsNewsicUrl": {
+  	"message": "URL to newsic instance",
+    "description": "Title for the URL setting."
+  },
+
+  "settingsNewsicUrlDetail": {
+  	"message": "Without trailing \"/\"; default value: https://trynewsic.tocsin.de",
+  	"description": "Hints for the URL setting."
+  },
+
+  "settingsSave": {
+  	"message": "Save",
+  	"description": "Text of save settings button."
+  }
+}
