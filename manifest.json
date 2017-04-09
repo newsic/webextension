@@ -23,6 +23,12 @@
       "page": "options.html"
   },
 
+  "applications": {
+    "gecko": {
+      "id": "newsic@tocsin.de"
+    }
+  },
+
   "permissions": ["storage"],
 
   "content_scripts": [
