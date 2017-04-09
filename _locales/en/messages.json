@@ -1,11 +1,11 @@
 {
   "extensionName": {
-    "message": "Send to newsic (alpha test)",
+    "message": "Send to newsic",
     "description": "Name of the extension."
   },
 
   "extensionDescription": {
-    "message": "Sends YouTube playlists and Vimeo albums & channels to newsic.",
+    "message": "Sends YouTube playlists directly to newsic.",
     "description": "Description of the extension."
   },
 
