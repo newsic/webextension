@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "default_locale": "en",
   "name": "__MSG_extensionName__",
-  "version": "0.1",
+  "version": "0.1.5",
 
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://newsic.tocsin.de",
@@ -37,6 +37,10 @@
       "js": ["sendtonewsic.js"],
       "run_at": "document_start"
     }
+  ],
+
+  "web_accessible_resources": [
+    "icons/logo48.png"
   ]
 
 }

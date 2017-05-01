@@ -36,12 +36,9 @@ function scanURL(url) {
 
 // insert button on playlist pages
 function insertButton() {
-	var button = document.getElementsByClassName("playlist-actions");
-	var button2 = document.getElementsByClassName("playlist-nav-controls");
+	var buttonPlaylistOverview = document.getElementsByClassName("playlist-actions");
+	var buttonInPlaylist = document.getElementsByClassName("playlist-nav-controls");
 	var regexec = scanURL(window.location.href);
-
-	// newsic logo as base64 encoded image (50x50)
-	var newsiclogo = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQIAdgB2AAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAAyADIDAREAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAYHCAEF/8QANBAAAQQBAQUEBgsAAAAAAAAAAQACAwQRBQYHCCFBEiIxcRMWNXSysyYyN0NRYWRzgZGx/8QAGwEBAAMBAQEBAAAAAAAAAAAAAAECBgUDBAf/xAAnEQEAAgAEAwkBAAAAAAAAAAAAAQIDBAURBiFxEhQxMjRBUcHwM//aAAwDAQACEQMRAD8Astfl6ggICAgICAgsHdfuy9fIrNiWXsxwytiGJOyc4yeh6YXV07Tu+xMymIT6PhsgbczJbcYC7ut9Lnljnk4HVdSOH47XOeSdno2uG/Q3wFteX0cmOThK88/5XrbQMOY5GymNutgdU2JvOrXYnBme648w4dHA9Qs9nMlfJ27NkTCLL4kCAg0Dw0+y73vo+WFquH/Jbr9LQszeXtu3YDZabXG1hYsOe2GvE44aZHdT+QAJXY1DOdxwJxdt58ISiO6De3q23MlqprcFds9ctOYWloLXHkcEnwwvg0vVMTOTNcSI3j4REvR3+6TXv7v7V58YMtFzXsd1AJwR/n9L21vCi+Vm0+MEsnrDKiAg0Dw0+y73vo+WFquH/Jbr9LQ9niZJ9SqQ/G+34HL34h9PXqSgHDofpFqQ/Tx/GuXoP9bdEQuXfV9metfts+MLQ6v6O/73Wlj9YFQQEF98OFytX0+3FNMxjpLvdDnAfdhajQL1rSYmff6Wh7HEvbrP2P0+KOdj3OvjAa4HwYV78QXrOXrET7koDw+269TX9RfYkawOgjaCSBz7a5eh2iuLbf4RC5d9d2oN2esgWI3FzY2gNeCcmRq0Or3r3O/P9utLIqwaggIOhzm+BI8kAvc76zifMoOAkeBwg6XvcMF7j5lBxAQEBAQEBAQEH//Z";
 
 	var buttonbg = "#9ba766";
 	var buttontext = "#fff";
@@ -60,13 +57,49 @@ function insertButton() {
 		if(regexec[2]) buttonurl += "#" + regexec[2];
 
 		// playlist overview pages
-		if(typeof button[0] !== 'undefined') {
-			button[0].insertAdjacentHTML("beforeend", '<a href="' + buttonurl + '" target="_blank"><button style="background:' + buttonbg + ';color:' + buttontext + '" class="yt-uix-tooltip yt-uix-button yt-uix-button-size-default yt-uix-button-default" data-tooltip-text="' + chrome.i18n.getMessage("YTPlaylistButtonTooltip") + '"><img style="width:20px;height:20px;" alt="" title="" src="' + newsiclogo + '" /> ' + chrome.i18n.getMessage("YTPlaylistButton") + '</button>');
+		if(typeof buttonPlaylistOverview[0] !== 'undefined') {
+			var link = document.createElement("a");
+			link.href = buttonurl;
+			link.target = "_blank";
+
+			button = document.createElement("button");
+			button.style = "background:" + buttonbg + ";color:" + buttontext;
+			button.className = "yt-uix-tooltip yt-uix-button yt-uix-button-size-default yt-uix-button-default";
+			button.setAttribute("data-tooltip-text", chrome.i18n.getMessage("YTPlaylistButtonTooltip"));
+		
+			newsiclogo = document.createElement("img");
+			newsiclogo.style = "width:20px;height:20px;margin-right:5px";
+			newsiclogo.src = browser.extension.getURL("icons/logo48.png");
+
+			button.appendChild(newsiclogo);
+
+			buttontxt = document.createElement("span");
+			buttontxt.textContent = chrome.i18n.getMessage("YTPlaylistButton");
+
+			button.appendChild(buttontxt);
+			link.appendChild(button);
+			buttonPlaylistOverview[0].appendChild(link);
 		}
 
 		// watching video in playlist
-		if(typeof button2[0] !== 'undefined') {
-			button2[0].insertAdjacentHTML("beforeend", '<a class="yt-uix-button yt-uix-button-size-default yt-uix-button-player-controls yt-uix-button-empty yt-uix-button-has-icon shuffle-playlist yt-uix-button-opacity yt-uix-tooltip yt-uix-tooltip yt-uix-button-toggled" data-tooltip-text="' + chrome.i18n.getMessage("YTPlaylistButton2Tooltip") + '" href="' + buttonurl + '" target="_blank"><span class="yt-uix-button-icon-wrapper"><img style="width:24px;height:24px;" alt="" title="" src="' + newsiclogo + '" /></span></a>');
+		if(typeof buttonInPlaylist[0] !== 'undefined') {
+
+			var link = document.createElement("a");
+			link.href = buttonurl;
+			link.target = "_blank";
+			link.className = "yt-uix-button yt-uix-button-size-default yt-uix-button-player-controls yt-uix-button-empty yt-uix-button-has-icon shuffle-playlist yt-uix-button-opacity yt-uix-tooltip yt-uix-tooltip yt-uix-button-toggled";
+			link.setAttribute("data-tooltip-text", chrome.i18n.getMessage("YTPlaylistButton2Tooltip"));
+
+			var span = document.createElement("span");
+			span.className = "yt-uix-button-icon-wrapper";
+
+			newsiclogo = document.createElement("img");
+			newsiclogo.style = "width:24px;height:24px";
+			newsiclogo.src = browser.extension.getURL("icons/logo48.png");
+
+			span.appendChild(newsiclogo);
+			link.appendChild(span);
+			buttonInPlaylist[0].appendChild(link);
 		}
   	});	
 };
