@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "default_locale": "en",
   "name": "__MSG_extensionName__",
-  "version": "0.1.5",
+  "version": "0.2.0",
 
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://newsic.tocsin.de",
@@ -10,8 +10,8 @@
   "author": "Stephan Fischer",
 
   "developer": {
-  "name": "Stephan Fischer",
-  "url": "https://newsic.tocsin.de"
+    "name": "Stephan Fischer",
+    "url": "https://newsic.tocsin.de"
   },
 
   "icons": {
@@ -20,7 +20,7 @@
   },
 
   "options_ui": {
-      "page": "options.html"
+    "page": "options.html"
   },
 
   "applications": {
@@ -29,7 +29,12 @@
     }
   },
 
-  "permissions": ["storage"],
+  // explanation of needed permissions:
+  // storage: for addon settings, tabs: analysis of current tab url
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
 
   "content_scripts": [
     {
@@ -41,6 +46,15 @@
 
   "web_accessible_resources": [
     "icons/logo48.png"
-  ]
+  ],
+
+    "browser_action": {
+    "default_icon": "icons/logo48_bw.png",
+    "default_title": "newsic"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  }
 
 }

@@ -39,6 +39,7 @@ function insertButton() {
 	var buttonPlaylistOverview = document.getElementsByClassName("playlist-actions");
 	var buttonInPlaylist = document.getElementsByClassName("playlist-nav-controls");
 	var regexec = scanURL(window.location.href);
+	regexec.lastIndex = 0;
 
 	var buttonbg = "#9ba766";
 	var buttontext = "#fff";
@@ -53,8 +54,10 @@ function insertButton() {
 
  		buttonurl += "/play/youtube/" + regexec[1];
 
-		// if index is set
-		if(regexec[2]) buttonurl += "#" + regexec[2];
+		// if playlist index is set: append it to newsic link
+		var number;
+		if(regexec[2]) number = regexec[2] - 1;
+		if(number) buttonurl += "#" + number;
 
 		// playlist overview pages
 		if(typeof buttonPlaylistOverview[0] !== 'undefined') {
